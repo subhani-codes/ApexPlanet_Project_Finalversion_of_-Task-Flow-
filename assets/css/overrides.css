@@ -1,0 +1,221 @@
+/* ==========================================================================
+   INTERFACE ACCESSIBILITY UPDATE
+========================================================================== */
+
+.todo-item,
+.stat-card,
+.sidebar-progress-card,
+.card {
+    border: 1.5px solid hsl(175, 39%, 50%);
+    box-shadow: 0 4px 10px #2472720a;
+}
+
+/* ==========================================================================
+   TASKFLOW PLATFORM UPGRADE
+========================================================================== */
+
+.btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-sm {
+    padding: 6px 14px;
+    font-size: 12px;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text);
+}
+/* ==========================================
+   FINAL UI OVERRIDES
+========================================== */
+
+/* Updated button sizes */
+
+.btn{
+    padding:12px 24px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.btn-sm{
+    padding:6px 14px;
+    font-size:12px;
+}
+
+/* Larger section title */
+
+.section-title{
+    font-size:24px;
+    font-weight:800;
+}
+
+/* Hero enhancement */
+
+.hero-quote{
+    font-size:17px;
+}
+
+/* Responsive dashboard improvements */
+
+@media (max-width:1023px){
+
+    .dashboard-layout{
+        display:flex;
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .sidebar-right{
+        order:1;
+    }
+
+    .main-content-left{
+        order:2;
+    }
+}
+
+@media (min-width:1024px){
+
+    .dashboard-layout{
+        display:flex;
+        flex-direction:row-reverse;
+        gap:40px;
+        align-items:flex-start;
+        width:100%;
+        margin-top:25px;
+    }
+
+    .main-content-left{
+        flex:1;
+        min-width:0;
+    }
+}
+/* ==========================================
+   DESKTOP REFINEMENTS
+========================================== */
+
+@media (min-width:1024px){
+
+    .container{
+        width:94%;
+        max-width:1650px;
+        margin:0 auto;
+        padding:0 20px;
+    }
+
+    .sidebar-right{
+        width:360px;
+        gap:24px;
+    }
+
+    .stats-sidebar-grid{
+        gap:16px;
+    }
+
+    .total-card{
+        padding:24px;
+    }
+
+    .done-card,
+    .pending-card{
+        padding:18px;
+    }
+
+    .hero{
+        padding:60px 40px 55px;
+    }
+
+    .hero h1{
+        font-size:36px;
+        margin-bottom:14px;
+    }
+
+    .hero-quote{
+        font-size:20px;
+        margin-bottom:18px;
+        max-width:800px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-status{
+        font-size:16px;
+        margin-bottom:24px;
+    }
+
+    .hero-btns .btn{
+        padding:14px 32px;
+        font-size:15px;
+    }
+}
+
+/* ==========================================
+   SECTION HEADER BUTTON
+========================================== */
+
+.main-content-left .section-header .btn-sm{
+
+    padding:13px 26px;
+    font-size:14px;
+    border-radius:8px;
+    letter-spacing:-0.2px;
+
+}
+
+.main-content-left .section-header .btn-sm:hover{
+
+    filter:brightness(1.15);
+    box-shadow:0 4px 12px rgba(99,102,241,.2);
+
+}
+/* ==========================================
+   CROSS DEVICE REFINEMENTS
+========================================== */
+
+.container{
+    width:100%;
+    max-width:1200px;
+    padding:0 16px;
+    box-sizing:border-box;
+}
+
+.card{
+    width:100%;
+    max-width:600px;
+    background:var(--surface);
+    color:var(--text);
+    box-sizing:border-box;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    background:var(--bg);
+    color:var(--text);
+    border:1px solid var(--border);
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+}
+
+body{
+    padding-bottom:70px;
+}
+
+@media(min-width:992px){
+
+    body{
+        padding-bottom:0;
+    }
+
+    .bottom-nav{
+        display:none;
+    }
+
+}
