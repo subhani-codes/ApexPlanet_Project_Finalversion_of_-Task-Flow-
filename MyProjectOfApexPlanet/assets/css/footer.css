@@ -1,0 +1,14 @@
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    background: var(--nav);
+    color: #64748b;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 12px;
+    margin-top: auto;
+    border-top: 1px solid var(--nav-border);
+    padding-bottom: 80px;
+}

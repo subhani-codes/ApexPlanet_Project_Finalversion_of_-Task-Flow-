@@ -1,0 +1,56 @@
+/* ==========================================
+   AUTHENTICATION
+========================================== */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 88vh;
+    padding: 20px 16px;
+    background: var(--bg);
+}
+
+.auth-box {
+    background: var(--surface);
+    padding: 30px 28px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 380px;
+}
+
+.auth-logo {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #6366f1, #0d9488);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 17px;
+    margin: 0 auto 14px;
+}
+
+.auth-box h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.auth-box .auth-sub {
+    color: var(--text2);
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.auth-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 0;
+}

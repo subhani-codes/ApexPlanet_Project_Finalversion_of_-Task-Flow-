@@ -1,0 +1,28 @@
+/*
+====================================
+ TaskFlow
+ Main CSS Loader
+====================================
+*/
+
+/* Variables */
+@import url("variables.css");
+
+/* Base */
+@import url("reset.css");
+
+/* Components */
+@import url("buttons.css");
+@import url("navbar.css");
+@import url("hero.css");
+@import url("forms.css");
+@import url("task.css");
+@import url("dashboard.css");
+@import url("auth.css");
+@import url("footer.css");
+
+/* Responsive */
+@import url("responsive.css");
+
+@import url("responsive.css");
+@import url("overrides.css");

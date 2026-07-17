@@ -1,0 +1,62 @@
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+    opacity: 0.86;
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6366f1, #0d9488);
+    color: #fff;
+}
+
+.btn-green {
+    background: #059669;
+    color: #fff;
+}
+
+.btn-red {
+    background: #dc2626;
+    color: #fff;
+}
+
+.btn-amber {
+    background: #d97706;
+    color: #fff;
+}
+
+.btn-outline {
+    background: var(--surface);
+    color: var(--text2);
+    border: 1px solid var(--border);
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 11px;
+}

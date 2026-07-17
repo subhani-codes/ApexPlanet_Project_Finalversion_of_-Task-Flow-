@@ -1,0 +1,183 @@
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (min-width: 768px) {
+
+    .navbar {
+        padding: 13px 30px;
+    }
+
+    .hero {
+        padding: 48px 30px 40px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .container {
+        padding: 0 20px;
+        margin: 28px auto;
+    }
+
+    .stats-grid {
+        gap: 14px;
+    }
+
+    .stat-card {
+        padding: 18px;
+        text-align: left;
+    }
+
+    .stat-num {
+        font-size: 28px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+    }
+
+    .todo-item {
+        padding: 14px 16px;
+    }
+
+    .footer {
+        padding-bottom: 14px;
+    }
+
+    .bottom-nav {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .bottom-nav {
+        display: grid;
+    }
+
+    .navbar-menu a:not(.dark-toggle) {
+        display: none;
+    }
+
+    .container {
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .hero h1 {
+        font-size: 20px;
+    }
+
+    .stats-grid {
+        gap: 6px;
+    }
+}
+/* ==========================================
+   DESKTOP LAYOUT
+========================================== */
+
+@media (min-width: 1024px) {
+
+    .dashboard-layout {
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+
+    .main-content-left {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .sidebar-right {
+        width: 320px;
+        position: sticky;
+        top: 90px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .stats-sidebar-grid {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 12px;
+    }
+
+    .total-card {
+        grid-column: 1 / span 2;
+        text-align: center;
+    }
+
+    .pagination-container {
+        display: flex;
+        justify-content: flex-start;
+        gap: 6px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width:1023px){
+
+    .navbar-search-wrapper{
+        display:none;
+    }
+
+    .stats-sidebar-grid{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:10px;
+        margin-bottom:15px;
+    }
+}
+/* ==========================================
+   MOBILE AUTH
+========================================== */
+
+@media(max-width:767px){
+
+    .auth-container{
+        padding:20px 12px;
+        min-height:calc(100vh - 120px);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    .auth-box{
+        width:100%;
+        max-width:100%;
+        padding:24px 16px;
+    }
+
+    .todo-item div{
+        align-items:flex-start;
+    }
+
+}
+@media(max-width:768px){
+
+.stat-card{
+
+padding:18px;
+
+}
+
+.stat-num{
+
+font-size:34px;
+
+}
+
+.stat-icon{
+
+font-size:28px;
+
+}
+
+}
