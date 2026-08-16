@@ -1,0 +1,32 @@
+/* ==========================================
+   SEARCH COMPONENT
+========================================== */
+
+.mobile-search-container{
+
+    display:none;
+    padding:10px 15px;
+    background:#1a1a1a;
+
+}
+
+.mobile-search-trigger{
+
+    display:none;
+    background:none;
+    border:none;
+    font-size:1.2rem;
+    cursor:pointer;
+    padding:5px;
+
+}
+
+.mobile-search-overlay{
+
+    display:none;
+    padding:12px 20px;
+    background:#1a1a1a;
+    border-bottom:1px solid #333;
+    transition:.3s;
+
+}

@@ -1,0 +1,139 @@
+/* ==============================
+   ERROR PAGES
+============================== */
+
+.error-page{
+
+    min-height:75vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+.error-code{
+
+    font-size:120px;
+
+    font-weight:900;
+
+    background:linear-gradient(135deg,#6366f1,#0d9488);
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    margin-bottom:10px;
+
+}
+
+.error-code.forbidden{
+
+    background:linear-gradient(135deg,#dc2626,#d97706);
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+.error-page h1{
+
+    font-size:34px;
+
+    margin-bottom:15px;
+
+    color:var(--text);
+
+}
+
+.error-page p{
+
+    max-width:550px;
+
+    color:var(--text2);
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+}
+
+.error-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+@media(max-width:768px){
+
+.error-code{
+
+font-size:80px;
+
+}
+
+.error-page h1{
+
+font-size:26px;
+
+}
+
+.error-buttons{
+
+flex-direction:column;
+
+width:100%;
+
+}
+
+.error-buttons a,
+
+.error-buttons button{
+
+width:100%;
+
+}
+
+
+}
+@keyframes floatAnimation{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+.error-code{
+
+animation:floatAnimation 3s ease-in-out infinite;
+
+}

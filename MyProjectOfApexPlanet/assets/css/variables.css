@@ -1,0 +1,39 @@
+/* ==========================================
+   VARIABLES
+========================================== */
+
+:root {
+    --bg: #f0fdfa;
+    --surface: #ffffff;
+    --border: #99f6e4;
+    --text: #134e4a;
+    --text2: #0f766e;
+    --text3: #5eead4;
+    --nav: #0f172a;
+    --nav-border: #1e293b;
+    --primary: #6366f1;
+    --teal: #0d9488;
+    --accent: #a78bfa;
+    --green: #059669;
+    --red: #dc2626;
+    --amber: #d97706;
+}
+
+/* Dark Theme */
+
+body.dark {
+    --bg: #0d1117;
+    --surface: #0f1f1e;
+    --border: #134e4a;
+    --text: #ccfbf1;
+    --text2: #5eead4;
+    --text3: #0d9488;
+    --nav: #020a09;
+    --nav-border: #134e4a;
+    --primary: #818cf8;
+    --teal: #14b8a6;
+    --accent: #c4b5fd;
+    --green: #34d399;
+    --red: #f87171;
+    --amber: #fbbf24;
+}
