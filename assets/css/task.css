@@ -1,0 +1,82 @@
+/* ==========================================
+   TASKS
+========================================== */
+
+.todo-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.todo-item:hover {
+    border-color: #4b4db9;
+    box-shadow: 0 2px 12px rgba(99,102,241,0.1);
+}
+
+.todo-item.completed {
+    opacity: 0.55;
+}
+
+.todo-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.todo-title.done {
+    text-decoration: line-through;
+    color: var(--text3);
+}
+
+.todo-meta {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+}
+
+.todo-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* ==========================================
+   BADGES
+========================================== */
+
+.badge {
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.badge-pending {
+    background: #dbd7ef;
+    color: #4c1d95;
+}
+
+.badge-completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+body.dark .badge-pending {
+    background: #1e1b4b;
+    color: #a5b4fc;
+}
+
+body.dark .badge-completed {
+    background: #064e3b;
+    color: #6ee7b7;
+}
