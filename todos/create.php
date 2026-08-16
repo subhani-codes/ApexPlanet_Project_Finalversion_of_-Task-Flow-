@@ -4,6 +4,7 @@
 // ======================================
 require_once '../includes/auth_helper.php';
 confirm_authenticated();
+require_once '../includes/progress_helper.php';
 
 // ======================================
 // Database
@@ -45,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt = $pdo->prepare("INSERT INTO todos (user_id, title, description, status) VALUES (?, ?, ?, 'pending')");
         if ($stmt->execute([$user_id, $title, $description])) {
             // Send user back to dashboard with a clear success parameter token
+            updateDailyProgress($pdo, $_SESSION['user_id']);
             header("Location: view.php?success=" . urlencode("Task created successfully!"));
             exit();
         } else {

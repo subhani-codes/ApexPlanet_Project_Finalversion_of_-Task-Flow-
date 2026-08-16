@@ -4,10 +4,12 @@ require_once '../includes/auth_helper.php';
 
 // Enforce baseline authentication checks natively before executing queries
 confirm_authenticated();
-
+require_once '../includes/date_helper.php';
 require '../db.php';
 
 $user_id = $_SESSION['user_id'];
+$today = getToday();
+$yesterday = getYesterday();
 // Dynamic greeting based on server time
 $currentHour = date('H');
 
@@ -31,9 +33,15 @@ if ($page < 1) { $page = 1; }
 // $$\text{Offset} = (\text{Page} - 1) \times \text{Limit}$$
 $offset = ($page - 1) * $limit;
 
-// Extract metrics summaries across background rows safely
-$statsStmt = $pdo->prepare("SELECT * FROM todos WHERE user_id = ?");
-$statsStmt->execute([$user_id]);
+// Extract metrics summaries across TODAY's rows only.
+// Yesterday's rows are auto-archived + deleted on login, so the
+// dashboard naturally shows a fresh-empty state every morning.
+$statsStmt = $pdo->prepare("
+    SELECT * FROM todos
+    WHERE user_id = ?
+      AND DATE(created_at) = ?
+");
+$statsStmt->execute([$user_id, $today]);
 $allUserTodos = $statsStmt->fetchAll();
 
 $total = count($allUserTodos);
@@ -49,43 +57,90 @@ if ($percentage == 100) {
     $progressMessage = "You're making great progress 💪";
 } elseif ($percentage >= 25) {
     $progressMessage = "Nice start! Stay consistent ⭐";
+} elseif ($total === 0) {
+    $progressMessage = "A clean slate. Add your first task below 👇";
 } else {
     $progressMessage = "Let's complete your first tasks today 🔥";
 }
 
 $remainingGoal = max(0, $pending);
 
-// Dynamic Safe Parameterized Query Execution
+// Dynamic Safe Parameterized Query Execution — TODAY's rows only.
 if ($search !== '') {
-    $countSql = "SELECT COUNT(*) FROM todos WHERE user_id = ? AND (title LIKE ? OR description LIKE ?)";
+    $countSql = "SELECT COUNT(*) FROM todos WHERE user_id = ? AND DATE(created_at) = ? AND (title LIKE ? OR description LIKE ?)";
     $countStmt = $pdo->prepare($countSql);
-    $countStmt->execute([$user_id, "%$search%", "%$search%"]);
+    $countStmt->execute([$user_id, $today, "%$search%", "%$search%"]);
     $totalRecords = $countStmt->fetchColumn();
 
-    $querySql = "SELECT * FROM todos WHERE user_id = ? AND (title LIKE ? OR description LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ?";
+    $querySql = "SELECT * FROM todos WHERE user_id = ? AND DATE(created_at) = ? AND (title LIKE ? OR description LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ?";
     $stmt = $pdo->prepare($querySql);
     $stmt->bindValue(1, $user_id, PDO::PARAM_INT);
-    $stmt->bindValue(2, "%$search%", PDO::PARAM_STR);
+    $stmt->bindValue(2, $today, PDO::PARAM_STR);
     $stmt->bindValue(3, "%$search%", PDO::PARAM_STR);
-    $stmt->bindValue(4, $limit, PDO::PARAM_INT);
-    $stmt->bindValue(5, $offset, PDO::PARAM_INT);
+    $stmt->bindValue(4, "%$search%", PDO::PARAM_STR);
+    $stmt->bindValue(5, $limit, PDO::PARAM_INT);
+    $stmt->bindValue(6, $offset, PDO::PARAM_INT);
     $stmt->execute();
 } else {
-    $countSql = "SELECT COUNT(*) FROM todos WHERE user_id = ?";
+    $countSql = "SELECT COUNT(*) FROM todos WHERE user_id = ? AND DATE(created_at) = ?";
     $countStmt = $pdo->prepare($countSql);
-    $countStmt->execute([$user_id]);
+    $countStmt->execute([$user_id, $today]);
     $totalRecords = $countStmt->fetchColumn();
 
-    $querySql = "SELECT * FROM todos WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ?";
+    $querySql = "SELECT * FROM todos WHERE user_id = ? AND DATE(created_at) = ? ORDER BY created_at DESC LIMIT ? OFFSET ?";
     $stmt = $pdo->prepare($querySql);
     $stmt->bindValue(1, $user_id, PDO::PARAM_INT);
-    $stmt->bindValue(2, $limit, PDO::PARAM_INT);
-    $stmt->bindValue(3, $offset, PDO::PARAM_INT);
+    $stmt->bindValue(2, $today, PDO::PARAM_STR);
+    $stmt->bindValue(3, $limit, PDO::PARAM_INT);
+    $stmt->bindValue(4, $offset, PDO::PARAM_INT);
     $stmt->execute();
 }
 
 $todos = $stmt->fetchAll();
 $totalPages = ceil($totalRecords / $limit);
+
+
+$stmt=$pdo->prepare("
+SELECT *
+FROM daily_progress
+WHERE user_id=?
+AND progress_date=?
+LIMIT 1
+");
+
+$stmt->execute([
+    $user_id,
+    $today
+]);
+
+$todayProgress=$stmt->fetch(PDO::FETCH_ASSOC);
+
+$stmt=$pdo->prepare("
+SELECT *
+FROM daily_progress
+WHERE user_id=?
+AND progress_date=?
+LIMIT 1
+");
+
+$stmt->execute([
+    $user_id,
+    $yesterday
+]);
+
+$yesterdayProgress=$stmt->fetch(PDO::FETCH_ASSOC);
+
+if(!$todayProgress && $yesterdayProgress){
+
+    if(!$yesterdayProgress['day_closed']){
+
+        header("Location:/myProjectOfApexPlanet/day/start.php");
+
+        exit();
+
+    }
+
+}
 
 require '../includes/header.php';
 require '../includes/navbar.php';

@@ -2,7 +2,10 @@
 if(session_status() === PHP_SESSION_NONE){
     session_start();
 }
+require_once '../includes/progress_helper.php';
+require_once "../helpers/logger.php";
 require '../db.php';
+
 
 // Check if logged in
 if(!isset($_SESSION['user_id'])){
@@ -31,6 +34,7 @@ $stmt->execute([$id]);
 $title=$stmt->fetchColumn();
 $stmt = $pdo->prepare("DELETE FROM todos WHERE id = ? AND user_id = ?");
 $stmt->execute([$id, $user_id]);
+updateDailyProgress($pdo, $_SESSION['user_id']);
 
 logActivity(
 
@@ -46,4 +50,6 @@ $title
 // Redirect back to view page
 header("Location: /myProjectOfApexPlanet/todos/view.php?success=Task deleted successfully!");
 exit();
+
+
 ?>

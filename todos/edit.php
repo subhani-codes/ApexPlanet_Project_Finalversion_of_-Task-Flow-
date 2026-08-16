@@ -9,7 +9,7 @@ confirm_authenticated();
 // Database
 // ===============================
 require '../db.php';
-
+require_once '../includes/progress_helper.php';
 // ===============================
 // Logger
 // ===============================
@@ -26,6 +26,7 @@ $user_id = $_SESSION['user_id'];
 // Fetch the targeted todo record instance safely using parameter bindings
 $stmt = $pdo->prepare("SELECT * FROM todos WHERE id = ? AND user_id = ?");
 $stmt->execute([$id, $user_id]);
+updateDailyProgress($pdo, $_SESSION['user_id']);
 $todo = $stmt->fetch();
 
 // Abort and redirect if record mapping fails
@@ -47,9 +48,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $error = "❌ Description threshold exceeded! Keep comments under 500 characters.";
     } else {
         // Execute dynamic row mutation update securely
-        $updateStmt = $pdo->prepare("UPDATE todos SET title = ?, description = ?, status = ? WHERE id = ? AND user_id = ?");
-        $updateStmt->execute([$title, $description, $status, $id, $user_id]);
-        
+       // Save completion time automatically
+$completedAt = null;
+
+if ($status === "completed") {
+    $completedAt = date("Y-m-d H:i:s");
+}
+
+$updateStmt = $pdo->prepare("
+    UPDATE todos
+    SET
+        title = ?,
+        description = ?,
+        status = ?,
+        completed_at = ?
+    WHERE id = ? AND user_id = ?
+");
+
+$updateStmt->execute([
+    $title,
+    $description,
+    $status,
+    $completedAt,
+    $id,
+    $user_id
+]);
+updateDailyProgress($pdo, $_SESSION['user_id']);
         header("Location: view.php?success=" . urlencode("Task updated successfully!"));
         exit();
     }

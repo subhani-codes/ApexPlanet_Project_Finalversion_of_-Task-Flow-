@@ -50,14 +50,45 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['role'])) {
 
 <?php if(isset($_SESSION['user_id'])): ?>
 <nav class="bottom-nav">
+
     <?php if($_SESSION['role'] === 'admin'): ?>
-        <a href="/myProjectOfApexPlanet/admin/dashboard.php" class="bnav-item active"><span>Control Panel</span></a>
-        <a href="/myProjectOfApexPlanet/admin/invite.php" class="bnav-item"><span>Invite Admin</span></a>
+
+        <a href="/myProjectOfApexPlanet/admin/dashboard.php" class="bnav-item">
+            <span class="bnav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+
+        <a href="/myProjectOfApexPlanet/admin/invite.php" class="bnav-item">
+            <span class="bnav-icon">👥</span>
+            <span>Admins</span>
+        </a>
+
     <?php else: ?>
-        <a href="/myProjectOfApexPlanet/todos/view.php" class="bnav-item active"><span>Home</span></a>
-        <a href="/myProjectOfApexPlanet/todos/create.php" class="bnav-item"><span>Add</span></a>
+
+        <a href="/myProjectOfApexPlanet/todos/view.php" class="bnav-item">
+            <span class="bnav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+
+        <a href="/myProjectOfApexPlanet/todos/view.php" class="bnav-item">
+            <span class="bnav-icon">📋</span>
+            <span>Tasks</span>
+        </a>
+
+        <a href="/myProjectOfApexPlanet/profile/index.php" class="bnav-item">
+            <span class="bnav-icon">👤</span>
+            <span>Profile</span>
+        </a>
+
+        <a href="/myProjectOfApexPlanet/todos/create.php" class="bnav-item">
+            <span class="bnav-icon">➕</span>
+            <span>Add Task</span>
+        </a>
+        
+
     <?php endif; ?>
-    <a href="/myProjectOfApexPlanet/logout.php" class="bnav-item"><span>Logout</span></a>
+
 </nav>
 <?php endif; ?>
+
 
